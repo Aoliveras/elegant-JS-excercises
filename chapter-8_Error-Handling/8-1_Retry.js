@@ -9,6 +9,15 @@ function primitiveMultiply(a, b) {
 
 function reliableMultiply(a, b) {
   // Your code here.
+  try {
+    return primitiveMultiply(a, b);
+  } catch (err) {
+    if (err instanceof MultiplicatorUnitFailure) {
+      console.log(err.message);
+      return reliableMultiply(a, b);
+    }
+    throw err;
+  }
 }
 
 console.log(reliableMultiply(8, 8));
