@@ -15,6 +15,25 @@ const box = {
 
 function withBoxUnlocked(body) {
   // Your code here.
+  if (box.locked === false) {
+    try {
+      body();
+    } catch (err) {
+      console.log(err.message);
+    } finally {
+      console.log(box.content);
+      box.lock();
+    }
+  } else {
+    try {
+      box.unlock();
+      body();
+    } catch (err) {
+      console.log(err.message);
+    } finally {
+      box.lock();
+    }
+  }
 }
 
 withBoxUnlocked(function() {
@@ -30,3 +49,5 @@ try {
 }
 console.log(box.locked);
 // → true
+
+console.log(box);
