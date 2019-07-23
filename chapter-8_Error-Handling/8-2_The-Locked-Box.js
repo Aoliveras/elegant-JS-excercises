@@ -20,9 +20,6 @@ function withBoxUnlocked(body) {
       body();
     } catch (err) {
       console.log(err.message);
-    } finally {
-      console.log(box.content);
-      box.lock();
     }
   } else {
     try {
